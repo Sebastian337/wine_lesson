@@ -1,3 +1,9 @@
+.replit
+index.html
+*.xlsx
+!wine.xlsx
+__pycache__/
+.venv/
 env/
 .vscode/
 
