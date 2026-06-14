@@ -38,12 +38,32 @@ for wine in wines:
     category = wine.get("Категория", "Без категории")
     grouped_wines[category].append(wine)
 
+
+feedbacks = [
+    {
+        "photo": "assets/person_1.jpg",
+        "text": "Если бы вино Киндзмараули вдруг стало мужчиной, то это был бы средних лет (35-40 лет) аристократичный мужчина, в белой дорогой рубашке и брюках, хорошей обуви, статный, знающий чего он хочет, успешный, но имеющий в своей душе такие струны, с которыми может быть созвучна истинная женская трепетность и беззащитность. Он может быть незаметен, он не бросается в глаза, но от того, что он есть, все вокруг становится на свои места.",
+        "author": "Марина Ли"
+    },
+    {
+        "photo": "assets/person_2.jpg",
+        "text": "Вино столовое полусладкое белое Кокур - неплохое вино, молодое, невыдержанное. Особенности технологии его производства и дают, очевидно, такой вкус. Вкус - довольно простой, несложный, но приятный. Невыдержанное вино в чем-то близко к молодому виноградному соку. Пьется легко, вкус приятно- округлый, нежный.",
+        "author": "Михаил Яковлев"
+    },
+    {
+        "photo": "assets/person_3.jpg",
+        "text": "Вина Шардоне хорошо подходят к нейтральным по остроте мясным, рыбным блюдам, блюдам из птицы, сырам и фруктам (яблоко, апельсин и груша). Вино мне понравилось, голова на утро от него не болела. Рекомендую.",
+        "author": "Андрей Власов"
+    }
+]
+
+
 env = Environment(
     loader=FileSystemLoader("."), autoescape=select_autoescape(["html", "xml"])
 )
 template = env.get_template("template.html")
 
-rendered_page = template.render(wines=grouped_wines, winery_age=winery_age_text)
+rendered_page = template.render(wines=grouped_wines, winery_age=winery_age_text, feedbacks=feedbacks)
 
 with open("index.html", "w", encoding="utf8") as file:
     file.write(rendered_page)
