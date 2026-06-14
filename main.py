@@ -3,6 +3,16 @@ from collections import defaultdict
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import pandas as pd
+import argparse
+
+
+parser = argparse.ArgumentParser(description="Скрипт для генерации сайта с винами")
+parser.add_argument(
+    "--filepath", 
+    default="wine.xlsx", 
+    help="Путь к файлу Excel с данными о винах"
+)
+args = parser.parse_args()
 
 
 def get_year_string(age):
@@ -19,7 +29,7 @@ current_year = datetime.datetime.now().year
 age = current_year - founded_year
 winery_age_text = f"{age} {get_year_string(age)}"
 
-excel_data = pd.read_excel("wine.xlsx", keep_default_na=False)
+excel_data = pd.read_excel(args.filepath, keep_default_na=False)
 excel_data.columns = excel_data.columns.str.strip()
 wines = excel_data.to_dict(orient="records")
 
