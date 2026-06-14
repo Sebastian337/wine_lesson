@@ -14,9 +14,9 @@ def get_year_string(age):
         return "лет"
 
 
-year_founded = 1920
+founded_year = 1920
 current_year = datetime.datetime.now().year
-age = current_year - year_founded
+age = current_year - founded_year
 winery_age_text = f"{age} {get_year_string(age)}"
 
 excel_data = pd.read_excel("wine.xlsx", keep_default_na=False)
